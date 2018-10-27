@@ -24,17 +24,13 @@ Other files needed for this simulation:
 
 
 
-MODULE 2: 
+MODULE 2: SHINY APP FOR FLEX SIMULATION 1
 
+This module contains the code needed to generate the baseline data from Simulation 1 of "Precision Medicine Analysis of the Flexible Lifestyles Empowering Chnage (FLEX) Trial" by M. T. Lawson, A. R. Kahkoska, et al. (Submitted 2018), then display it in a Shiny app. As mentioned in Module 1, the FLEX trial contained multiple outcomes of interest, as well as a composite outcome which approximates constrained optimization over multiple outcome variables. The underlying graph illustrates a simple but important concept: the interplay between the univariate and composite outcomes. Sliders allow the user to specify n, p, and the magnitude of the true treatment effects for each univariate outcome. A numerical input field allows users to change the random number seed, generating new graphs with the same specifications.
 
+app.R is a self-sufficient file to run this module--the requisite two data generation functions have been migrated into its body. 
 
-
-
-
-
-
-
-
+The finished app can be viewed at https://mt-lawson.shinyapps.io/flex_sim1_shiny/.
 
 
 
