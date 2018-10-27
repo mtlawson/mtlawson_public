@@ -1,0 +1,1 @@
+sbatch -o flex_sim2_collect.out -t 0-01:00:00 --mem=20000 --job-name=collect --wrap "Rscript ~/flex/flex_sim2_collect.R"

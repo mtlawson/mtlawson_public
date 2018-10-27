@@ -86,3 +86,70 @@ for (ant in ant_list) {
     }
   }
 }
+
+# create readable output tables
+for (ant in ant_list) {
+  for (d1 in d1_list) {
+    for (d2 in d2_list) {
+      eval(parse(text=sprintf("load(file='%s/sim2_ant%s_%s_%s.rda')",datadir,ant,d1,d2))) 
+    }
+  }
+}
+
+# subgroup sens and spec: synergistic
+sim2_sens_spec_table <- matrix("",nrow=2+2*length(d1_list)*length(d2_list),ncol=9)
+sim2_sens_spec_table[1,] <- c("delta_1","delta_2","Measure","Method=RLT","","","Method=OWL","","")
+sim2_sens_spec_table[2,] <- c("","","","S=-1","S=0","S=1","S=-1","S=0","S=1")
+for (i in 1:length(d1_list)) {
+  sim2_sens_spec_table[(2+2*(length(d2_list)*(i-1))+1),1] <- d1_list[i]
+  for (j in 1:length(d2_list)) {
+    sim2_sens_spec_table[2+2*(length(d2_list)*(i-1))+2*(j-1)+1,2] <- d2_list[j]
+    sim2_sens_spec_table[2+2*(length(d2_list)*(i-1))+2*(j-1)+(1:2),3] <- c("Sens","Spec")
+    sim2_sens_spec_table[2+2*(length(d2_list)*(i-1))+2*(j-1)+(1:2),4:6] <- sprintf("%.3f",eval(parse(text=sprintf("sim2_ant0_%s_%s$sens_spec[1:2,]",d1_list[i],d2_list[j]))))
+    sim2_sens_spec_table[2+2*(length(d2_list)*(i-1))+2*(j-1)+(1:2),7:9] <- sprintf("%.3f",eval(parse(text=sprintf("sim2_ant0_%s_%s$sens_spec[3:4,]",d1_list[i],d2_list[j]))))
+  }
+}
+save(sim2_sens_spec_table,file=sprintf("%s/sim2_sens_spec_table.rda",datadir))
+
+# subgroup sens and spec: antagonistic
+sim2_sens_spec_table_a <- matrix("",nrow=2+2*length(d1_list)*length(d2_list),ncol=9)
+sim2_sens_spec_table_a[1,] <- c("delta_1","delta_2","Measure","Method=RLT","","","Method=OWL","","")
+sim2_sens_spec_table_a[2,] <- c("","","","S=-1","S=0","S=1","S=-1","S=0","S=1")
+for (i in 1:length(d1_list)) {
+  sim2_sens_spec_table_a[(2+2*(length(d2_list)*(i-1))+1),1] <- d1_list[i]
+  for (j in 1:length(d2_list)) {
+    sim2_sens_spec_table_a[2+2*(length(d2_list)*(i-1))+2*(j-1)+1,2] <- d2_list[j]
+    sim2_sens_spec_table_a[2+2*(length(d2_list)*(i-1))+2*(j-1)+(1:2),3] <- c("Sens","Spec")
+    sim2_sens_spec_table_a[2+2*(length(d2_list)*(i-1))+2*(j-1)+(1:2),4:6] <- sprintf("%.3f",eval(parse(text=sprintf("sim2_ant1_%s_%s$sens_spec[1:2,]",d1_list[i],d2_list[j]))))
+    sim2_sens_spec_table_a[2+2*(length(d2_list)*(i-1))+2*(j-1)+(1:2),7:9] <- sprintf("%.3f",eval(parse(text=sprintf("sim2_ant1_%s_%s$sens_spec[3:4,]",d1_list[i],d2_list[j]))))
+  }
+}
+save(sim2_sens_spec_table_a,file=sprintf("%s/sim2_sens_spec_table_a.rda",datadir))
+
+# treatment effect MSE: synergistic
+sim2_mse_table <- matrix("",nrow=1+length(d1_list),ncol=1+length(d2_list))
+sim2_mse_table[1,] <- c("","delta_2=1","delta_2=3","delta_2=10")
+sim2_mse_table[,1] <- c("","delta_1=1","delta_1=3","delta_1=10")
+for (d1 in d1_list) {
+  i=which(d1_list==d1)+1
+  for (d2 in d2_list) {
+    j=which(d2_list==d2)+1
+    eval(parse(text=sprintf("mse_temp=sim2_ant0_%s_%s$mse",d1,d2)))
+    sim2_mse_table[i,j]=sprintf("%.3f",mse_temp)
+  }
+}
+save(sim2_mse_table,file=sprintf("%s/sim2_mse_table.rda",datadir))
+
+# treatment effect MSE: antagonistic
+sim2_mse_table_a <- matrix("",nrow=1+length(d1_list),ncol=1+length(d2_list))
+sim2_mse_table_a[1,] <- c("","delta_2=1","delta_2=3","delta_2=10")
+sim2_mse_table_a[,1] <- c("","delta_1=1","delta_1=3","delta_1=10")
+for (d1 in d1_list) {
+  i=which(d1_list==d1)+1
+  for (d2 in d2_list) {
+    j=which(d2_list==d2)+1
+    eval(parse(text=sprintf("mse_temp=sim2_ant1_%s_%s$mse",d1,d2)))
+    sim2_mse_table_a[i,j]=sprintf("%.3f",mse_temp)
+  }
+}
+save(sim2_mse_table_a,file=sprintf("%s/sim2_mse_table_a.rda",datadir))
