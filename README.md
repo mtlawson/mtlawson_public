@@ -5,6 +5,7 @@ Welcome to mtlawson_public! This repository contains public samples of code writ
 
 
 MODULE 1: FLEX SIMULATION 2
+
 This module contains the code needed to run Simulation 2 from "Precision Medicine Analysis of the Flexible Lifestyles Empowering Chnage (FLEX) Trial" by M. T. Lawson, A. R. Kahkoska, et al. (Submitted 2018) in a bash computing environment. Briefly, this paper was a precision medicine-based subgroup analysis of the FLEX trial, a clinical trial of a behavioral intervention in adolescent type 1 diabetes. The FLEX trial contained multiple outcomes of interest. The methodological advancement in this paper took the form of a composite outcome, which approximates constrained optimization over a set of multiple outcome variables by collapsing them into a single variable. Simulation 2 explores the properties of the precision medicine-based subgroup analysis in trial-like conditions (n=200, p=30, 2 outcome variables) where the true treatment effect for each univariate outcome can be known and specified.
 
 To run Simulation 2, follow this procedure:
