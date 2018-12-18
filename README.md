@@ -1,6 +1,6 @@
 # mtlawson_public
 
-Welcome to mtlawson_public! This repository contains public samples of code written by Michael T. Lawson (Biostatistics PhD candidate, UNC-Chapel Hill). This code was all written in the course of research projects at UNC; I've tried to comment things clearly and extract self-contained modules, but please note that some code may be hard to decipher without reading the underlying research. The remainder of this document is a brief overview of the projects and files contained in the repository.
+Welcome to mtlawson_public! This repository contains public samples of code written by Michael T. Lawson (Biostatistics PhD candidate, UNC-Chapel Hill). This code was all written in the course of research projects or learn-to-code exercises at UNC; I've tried to comment things clearly and extract self-contained modules, but please note that some code may be hard to decipher without reading the underlying research. The remainder of this document is a brief overview of the projects and files contained in the repository.
 
 
 
@@ -31,6 +31,12 @@ This module contains the code needed to generate the baseline data from Simulati
 app.R is a self-sufficient file to run this module--the requisite two data generation functions have been migrated into its body. 
 
 The finished app can be viewed at https://mt-lawson.shinyapps.io/flex_sim1_shiny/.
+
+
+
+MODULE 3: SAMPLE PYTHON CODE
+
+This module contains my implementation of a learn-to-code Python assignment. The exercise entailed coding the working functionality of a vending machine. Coding concepts illustrated: user-defined classes and exceptions, documentation, user input cleaning, simplifying arithmetic with basic numpy, recursion, and encapsulating large tasks into single functions so that the user only needs define the class and call run(). The only file needed for this module is VendingMachine.py; the vending machine interface will automatically initiate when VendingMachine.py is run.
 
 
 
